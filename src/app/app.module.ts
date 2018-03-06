@@ -9,23 +9,26 @@ import { AboutComponent } from './about/about.component';
 import { ShopComponent } from './shop/shop.component';
 import { InfoComponent } from './info/info.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CartComponent } from './cart/cart.component';
+
 
 
 @NgModule({
-  declarations: [
+  declarations: [ //stating what components and directives belong to it
     AppComponent,
     HomeComponent,
     AboutComponent,
     ShopComponent,
     InfoComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [], //service providers
+  bootstrap: [AppComponent] //the root component that Angular creates and inserts into the index.html
 })
 export class AppModule { }

@@ -1,0 +1,29 @@
+.shop {
+  
+  
+}
+
+.shop .product-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+}
+
+.shop .product {
+  background: red;
+  position: relative;
+}
+
+.shop .title {
+  text-align: center;
+}
+
+.shop .description {
+  display: block;
+}
+
+.shop .price {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
