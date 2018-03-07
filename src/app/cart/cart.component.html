@@ -5,5 +5,8 @@
     <span>Description: {{item.product.description}}</span>
     <span>Price: {{item.product.price}}</span>
     <span>Count: {{item.count}}</span>
+    <span (click)="decreaseAmount(item)">-</span>
+    <span (click)="increaseAmount(item)">+</span>
+
   </div>
 </div>

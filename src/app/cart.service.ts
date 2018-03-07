@@ -15,7 +15,7 @@ export class CartService {
   currentCart = this.cartSource.asObservable();
     
   addToCart(newProduct: Product): Observable<any> {
-    let alreadyAdded  = _.find(this.cartItems, (ci) => ci.product._id === newProduct._id);
+    let alreadyAdded  = this.findCartItem(this.cartItems, newProduct);;
     if (alreadyAdded) {
       alreadyAdded.count += 1;
     } else {
@@ -23,9 +23,19 @@ export class CartService {
       this.cartItems.push(newCartItem);
     }
     this.cartSource.next(this.cartItems);
-    console.log('this.cartItems', this.cartItems)
     return this.currentCart;
+  }
 
+  decreaseAmount(product: Product) {
+    let alreadyAdded  = this.findCartItem(this.cartItems, product);
+    if (alreadyAdded.count > 0) {
+      alreadyAdded.count--;
+    }
+    this.cartSource.next(this.cartItems);
+  }
+
+  private findCartItem(cartItems: CartItem[], newProduct: Product): CartItem {
+    return _.find(this.cartItems, (ci) => ci.product._id === newProduct._id);
   }
 
 

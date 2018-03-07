@@ -10,8 +10,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  // cartItems$: BehaviorSubject<Array<CartItem>>;
-  // cartItems = ['test', 'asdf']
   cartItems: Array<CartItem>;
 
   constructor(private cartService: CartService) {
@@ -20,16 +18,16 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
     this.cartService.currentCart.subscribe(currentCart => this.cartItems = currentCart);
-    // console.log('this.cartService.cart$', this.cartService.cart$);
-     
-    // this.cartService.cart$.subscribe({
-    //   next: () => {
-    //     console.log('cart.component');
-        
-    //   }
-    // })
-    
-  } // LEFT OFF: shop.component and cart.component to share the same cart.service
-  // add to cart from shop will cause behaviorsubject to call .next and update cart in cart.compoent
+  } 
 
+  increaseAmount(cartItem: CartItem) {
+    this.cartService.addToCart(cartItem.product);
+  }
+  decreaseAmount(cartItem: CartItem) {
+    if (cartItem.count <= 0) {
+      console.log('do you want to delete modal?');
+    } else {
+      this.cartService.decreaseAmount(cartItem.product);
+    }
+  }
 }

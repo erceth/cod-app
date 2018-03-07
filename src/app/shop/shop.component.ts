@@ -6,7 +6,7 @@ import { CartService } from '../cart.service'
 
 @Component({
   selector: 'app-shop',
-  providers: [ProductService, CartService],
+  providers: [ProductService],
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
