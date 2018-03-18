@@ -1,4 +1,6 @@
-# Cod
+# COD
+
+This is the client side of the store.  Written in Angular.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 

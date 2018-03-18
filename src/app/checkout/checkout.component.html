@@ -1,10 +1,25 @@
 <div>
   <mat-horizontal-stepper>
     <mat-step>
-      <ng-template matStepLabel>Name and Address</ng-template>
-      <form [formGroup]="nameAddressForm" class="name-address">
+      <ng-template matStepLabel>Shipping Address</ng-template>
+      <form [formGroup]="shippingAddressForm" class="name-address">
         <mat-form-field>
             <input matInput formControlName="firstName" placeholder="First Name" type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="lastName" placeholder="Last Name" type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="firstAddressLine" placeholder="First Address Line" type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="secondAddressLine" placeholder="Second Address Line" type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="city" placeholder="City" type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="zipCode" placeholder="Zip" type="text">
         </mat-form-field>
       </form>
       <div>
@@ -12,18 +27,44 @@
       </div>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Billing</ng-template>
-      <!-- <form [formGroup]="billingForm" class="billing">
+      <ng-template matStepLabel>Billing Address</ng-template>
+      <form [formGroup]="billingForm" class="name-address">
         <mat-form-field>
-            <input matInput placeholder="Name on Card" type="text">
+            <input matInput formControlName="firstName" placeholder="First Name" type="text">
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Card Number" type="text">
+            <input matInput formControlName="lastName" placeholder="Last Name" type="text">
         </mat-form-field>
-      </form> -->
+        <mat-form-field>
+            <input matInput formControlName="firstAddressLine" placeholder="First Address Line" type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="secondAddressLine" placeholder="Second Address Line" type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="city" placeholder="City" type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput formControlName="zipCode" placeholder="Zip" type="text">
+        </mat-form-field>
+      </form>
       <div>
-        <button mat-button matStepperNext>Next: Billing</button>
+        <button mat-button matStepperNext>Next: Payment</button>
       </div>
     </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Billing Address</ng-template>
+      <form [formGroup]="paymentForm" class="name-address">
+        <mat-form-field>
+            <input matInput formControlName="creditCardNumber" placeholder="Credit Card Number" type="text">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="cvv" placeholder="cvv" type="text">
+      </mat-form-field>
+      </form>
+      <div>
+        <button>Submit Order</button>
+      </div>
+    </mat-step> 
   </mat-horizontal-stepper>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
 import {FormGroup, FormBuilder, Validators, } from '@angular/forms';
+import * as _ from "lodash";
 
 
 @Component({
@@ -10,27 +11,46 @@ import {FormGroup, FormBuilder, Validators, } from '@angular/forms';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  nameAddressForm: FormGroup;
+  shippingAddressForm: FormGroup;
   billingForm: FormGroup;
+  paymentForm: FormGroup;
 
   constructor(private fb: FormBuilder) { 
-    this.nameAddressForm = this.fb.group({
+    this.shippingAddressForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       firstAddressLine: ['', Validators.required],
       secondAddressLine: ['', Validators.required],
-      city: ['', Validators.required]
+      city: ['', Validators.required],
+      zipCode: ['', Validators.required]
     });
-// Deep copy nameAddressForm to billingForm when user clicks, Next: Billing the first time.
+
+    // TODO: copy to shipping to billing automatically
     this.billingForm = this.fb.group({
-      firstName: ['', Validators.required]
-    })
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      firstAddressLine: ['', Validators.required],
+      secondAddressLine: ['', Validators.required],
+      city: ['', Validators.required],
+      zipCode: ['', Validators.required]
+    });
+
+    this.paymentForm = this.fb.group({
+      creditCardNumber: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)] ],
+      cvv: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(4)] ]
+
+      
+    });
   }
 
   ngOnInit() {
   }
+  
 
 
 }
 
-//going off this: https://angular.io/guide/reactive-forms#more-formcontrols
+//going off this: 
+/*
+https://angular.io/guide/reactive-forms#more-formcontrols
+*/
