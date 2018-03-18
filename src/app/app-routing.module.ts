@@ -7,6 +7,7 @@ import { CartComponent } from './cart/cart.component';
 import { InfoComponent } from './info/info.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 
+
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'about', component: AboutComponent},

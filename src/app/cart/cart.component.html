@@ -5,8 +5,12 @@
     <span>Description: {{item.product.description}}</span>
     <span>Price: {{item.product.price}}</span>
     <span>Count: {{item.count}}</span>
-    <span (click)="decreaseAmount(item)">-</span>
-    <span (click)="increaseAmount(item)">+</span>
+    <button mat-raised-button (click)="decreaseAmount(item)">
+      <span [hidden]="item.count > 1">delete</span>
+      <span [hidden]="item.count <= 1">-</span>
+    </button>
+    <button mat-raised-button (click)="increaseAmount(item)">+</button>
 
   </div>
+  <button mat-raised-button *ngIf="cartItems.length > 0"><a routerLink="/checkout">Checkout</a></button>
 </div>

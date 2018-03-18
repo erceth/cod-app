@@ -1,3 +1,29 @@
-<p>
-  checkout works!
-</p>
+<div>
+  <mat-horizontal-stepper>
+    <mat-step>
+      <ng-template matStepLabel>Name and Address</ng-template>
+      <form [formGroup]="nameAddressForm" class="name-address">
+        <mat-form-field>
+            <input matInput formControlName="firstName" placeholder="First Name" type="text">
+        </mat-form-field>
+      </form>
+      <div>
+        <button mat-button matStepperNext>Next: Billing</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Billing</ng-template>
+      <!-- <form [formGroup]="billingForm" class="billing">
+        <mat-form-field>
+            <input matInput placeholder="Name on Card" type="text">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Card Number" type="text">
+        </mat-form-field>
+      </form> -->
+      <div>
+        <button mat-button matStepperNext>Next: Billing</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
