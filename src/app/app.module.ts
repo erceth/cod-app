@@ -13,7 +13,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
 import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatDialogModule } from '@angular/material';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -37,7 +37,6 @@ import {MatInputModule} from '@angular/material/input';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatStepperModule,

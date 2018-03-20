@@ -4,48 +4,49 @@
       <ng-template matStepLabel>Shipping Address</ng-template>
       <form [formGroup]="shippingAddressForm" class="name-address">
         <mat-form-field>
-            <input matInput formControlName="firstName" placeholder="First Name" type="text">
+          <input matInput formControlName="firstName" placeholder="First Name" type="text">
         </mat-form-field>
         <mat-form-field>
-            <input matInput formControlName="lastName" placeholder="Last Name" type="text">
+          <input matInput formControlName="lastName" placeholder="Last Name" type="text">
         </mat-form-field>
         <mat-form-field>
-            <input matInput formControlName="firstAddressLine" placeholder="First Address Line" type="text">
+          <input matInput formControlName="firstAddressLine" placeholder="First Address Line" type="text">
         </mat-form-field>
         <mat-form-field>
-            <input matInput formControlName="secondAddressLine" placeholder="Second Address Line" type="text">
+          <input matInput formControlName="secondAddressLine" placeholder="Second Address Line" type="text">
         </mat-form-field>
         <mat-form-field>
-            <input matInput formControlName="city" placeholder="City" type="text">
+          <input matInput formControlName="city" placeholder="City" type="text">
         </mat-form-field>
         <mat-form-field>
-            <input matInput formControlName="zipCode" placeholder="Zip" type="text">
+          <input matInput formControlName="zipCode" placeholder="Zip" type="text">
         </mat-form-field>
       </form>
       <div>
-        <button mat-button matStepperNext>Next: Billing</button>
+        <button mat-button matStepperNext (click)="copyShippingToBilling(shippingAddressForm.value.value)">Next: Billing</button>
       </div>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Billing Address</ng-template>
+      <label><input type="checkbox" #billingEnabledCheck (change)="(billingEnabledCheck.checked) ? billingForm.enable(): billingForm.disabled()">Billing Address is different than Shipping Address</label>
       <form [formGroup]="billingForm" class="name-address">
         <mat-form-field>
-            <input matInput formControlName="firstName" placeholder="First Name" type="text">
+          <input matInput formControlName="firstName" placeholder="First Name" type="text">
         </mat-form-field>
         <mat-form-field>
-            <input matInput formControlName="lastName" placeholder="Last Name" type="text">
+          <input matInput formControlName="lastName" placeholder="Last Name" type="text">
         </mat-form-field>
         <mat-form-field>
-            <input matInput formControlName="firstAddressLine" placeholder="First Address Line" type="text">
+          <input matInput formControlName="firstAddressLine" placeholder="First Address Line" type="text">
         </mat-form-field>
         <mat-form-field>
-            <input matInput formControlName="secondAddressLine" placeholder="Second Address Line" type="text">
+          <input matInput formControlName="secondAddressLine" placeholder="Second Address Line" type="text">
         </mat-form-field>
         <mat-form-field>
-            <input matInput formControlName="city" placeholder="City" type="text">
+          <input matInput formControlName="city" placeholder="City" type="text">
         </mat-form-field>
         <mat-form-field>
-            <input matInput formControlName="zipCode" placeholder="Zip" type="text">
+          <input matInput formControlName="zipCode" placeholder="Zip" type="text">
         </mat-form-field>
       </form>
       <div>
@@ -53,18 +54,52 @@
       </div>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Billing Address</ng-template>
+      <ng-template matStepLabel>Payment</ng-template>
       <form [formGroup]="paymentForm" class="name-address">
         <mat-form-field>
-            <input matInput formControlName="creditCardNumber" placeholder="Credit Card Number" type="text">
+          <input matInput formControlName="creditCardNumber" placeholder="Credit Card Number" type="text">
         </mat-form-field>
         <mat-form-field>
           <input matInput formControlName="cvv" placeholder="cvv" type="text">
-      </mat-form-field>
+        </mat-form-field>
       </form>
       <div>
-        <button>Submit Order</button>
+        <button mat-button matStepperNext>Review Order</button>
       </div>
-    </mat-step> 
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Review Order</ng-template>
+      <h3>Shipping Address</h3>
+      {{shippingAddressForm.value.firstName}}
+      {{shippingAddressForm.value.lastName}}
+      {{shippingAddressForm.value.firstAddressLine}}
+      {{shippingAddressForm.value.secondAddressLine}}
+      {{shippingAddressForm.value.city}}
+      {{shippingAddressForm.value.zipCode}}
+
+      <h3>Billing Address</h3>
+      <div *ngIf="billingEnabledCheck.checked">
+          {{billingForm.value.firstName}}
+          {{billingForm.value.lastName}}
+          {{billingForm.value.firstAddressLine}}
+          {{billingForm.value.secondAddressLine}}
+          {{billingForm.value.city}}
+          {{billingForm.value.zipCode}}
+      </div>
+      <div *ngIf="!billingEnabledCheck.checked">
+        Billing and Shipping are the same.
+      </div>
+
+      <h3>Payment</h3>
+      <div>
+        {{paymentForm.value.creditCardNumber}}
+        {{paymentForm.value.cvv}}
+      </div>
+
+      <button mat-button>Submit Order</button>
+      
+
+
+    </mat-step>
   </mat-horizontal-stepper>
 </div>
