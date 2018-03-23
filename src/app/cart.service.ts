@@ -10,8 +10,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class CartService {
   
-  // private cartItems: Array<CartItem> = [];
-  private cartItems: Array<CartItem> = [new CartItem(new Product(50, 'classic COD', 'The original the built the company'), 1)]; //DEBUG
+  private cartItems: Array<CartItem> = [];
+  // private cartItems: Array<CartItem> = [new CartItem(new Product(1, 'classic COD', 'The original the built the company', 50), 1)]; //DEBUG
   private cartSource = new BehaviorSubject<Array<CartItem>>(this.cartItems);
   currentCart = this.cartSource.asObservable();
     

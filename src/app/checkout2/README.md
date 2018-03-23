@@ -1,0 +1,2 @@
+I put in a lot of work into figuring out how Angular forms work only to find out that I didn't need it for the checkout page.
+This is a copy of the working form so I can refer to it when I make other forms.

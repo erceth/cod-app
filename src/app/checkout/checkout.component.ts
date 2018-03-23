@@ -1,81 +1,67 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material/input';
-import {FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {FormGroup, FormControl } from '@angular/forms';
+import { CartItem } from '../data-schemas/cart-items';
+import { config } from '../config';
+import { CheckoutService } from './checkout.service';
 import * as _ from "lodash";
 
+declare let StripeCheckout: any;
 
 @Component({
-  selector: 'app-checkout',
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  selector: 'checkout',
+  providers: [CheckoutService],
+  template: `
+    <button *ngIf="!checkoutToken" (click)="checkoutPopUp()">Checkout</button>
+    <div *ngIf="checkoutToken">{{checkoutToken}}</div>
+  `
 })
 export class CheckoutComponent implements OnInit {
-  shippingAddressForm: FormGroup;
-  billingForm: FormGroup;
-  paymentForm: FormGroup;
-  private preventCopyShippingToBilling = false;
-  
+  @Input() cartItems: Array<CartItem>;
+  checkoutToken;
+  private handler;
+  private description;
+  private totalCost: number;
 
-  constructor(private fb: FormBuilder) { 
-    
-  }
+  constructor(private checkoutService: CheckoutService) {}
 
   ngOnInit() {
-    this.shippingAddressForm = this.fb.group({
-      firstName: ['Eric', Validators.required],
-      lastName: ['Ethington', Validators.required],
-      firstAddressLine: ['1 Pogue Circle', Validators.required],
-      secondAddressLine: ['', Validators.required],
-      city: ['The Colony', Validators.required],
-      zipCode: ['75056', Validators.required]
-    });
+    this.description = _.reduce(this.cartItems, (descriptionString, cartItem) => {
+      return descriptionString + cartItem.count + ' x ' + cartItem.product.name + ',';
+    }, '');
 
-    this.billingForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      firstAddressLine: ['', Validators.required],
-      secondAddressLine: ['', Validators.required],
-      city: ['', Validators.required],
-      zipCode: ['', Validators.required]
-    });
-    this.billingForm.disable();
-
-    this.paymentForm = this.fb.group({
-      creditCardNumber: ['4444444444444', [Validators.required, Validators.minLength(16), Validators.maxLength(16)] ],
-      cvv: ['123', [Validators.required, Validators.minLength(3), Validators.maxLength(4)] ]
-
-      
-    });
+    this.totalCost = _.reduce(this.cartItems, (total, cartItem) => {
+      return total + (cartItem.product.price * cartItem.count);
+    }, 0);
+    this.totalCost = this.totalCost * 100; //convert to pennies
   }
 
-  
+  checkoutPopUp() {
 
-  copyShippingToBilling(shippingForm) {
-    if (!this.preventCopyShippingToBilling) {
-      this.preventCopyShippingToBilling = true; //only allow once
-      //TODO: There is probably a better way to do this.
-      this.billingForm = this.fb.group({
-        firstName: [shippingForm.firstName, Validators.required],
-        lastName: [shippingForm.lastName, Validators.required],
-        firstAddressLine: [shippingForm.firstAddressLine, Validators.required],
-        secondAddressLine: [shippingForm.secondAddressLine],
-        city: [shippingForm.city, Validators.required],
-        zipCode: [shippingForm.firstzipCodeAddressLine, Validators.required]
-      });
-      this.billingForm.disable();
-    }
+    // this.checkoutService.newOrder();  //TODO 
     
+    this.handler = StripeCheckout.configure({
+      key: config.stripePublicKey,
+      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+      locale: 'auto',
+      
+      billingAddress: true,
+      shippingAddress: true,
+      token: (token) => {
+        console.log(token);
+        this.checkoutToken = token;
+        
+        // You can access the token ID with `token.id`.
+        // Get the token ID to your server-side code for use.
+      }
+    });
+
+    this.handler.open({
+      name: 'Cup Of Dirt Checkout',
+      description: this.description,
+      amount: this.totalCost
+    });
   }
-  
-
-
+    
 }
-
-//LEFT OFF, watch Lynda chapter abou angular forms
-
-
-/*
-Useful form example
-https://angular.io/guide/reactive-forms#more-formcontrols
-*/

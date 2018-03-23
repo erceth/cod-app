@@ -12,5 +12,8 @@
     <button mat-raised-button (click)="increaseAmount(item)">+</button>
 
   </div>
-  <button mat-raised-button *ngIf="cartItems.length > 0"><a routerLink="/checkout">Checkout</a></button>
+  <div *ngIf="cartItems.length > 0">
+    <checkout [cartItems]="cartItems"></checkout>  
+  </div>
+  
 </div>
