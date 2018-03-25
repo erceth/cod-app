@@ -38,9 +38,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkoutPopUp() {
-
-    // this.checkoutService.newOrder();  //TODO 
-    
     this.handler = StripeCheckout.configure({
       key: config.stripePublicKey,
       image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
@@ -50,7 +47,18 @@ export class CheckoutComponent implements OnInit {
       shippingAddress: true,
       token: (token) => {
         console.log(token);
-        this.checkoutToken = token;
+        let orderDetails = {
+          description: this.description,
+          totalCost: this.totalCost
+        }
+        this.checkoutService.newOrder(token.id, orderDetails).subscribe((success) => {
+          console.log('success sending to server', success)
+          //order success
+        }, (error) => {
+          console.log('could not send to server, error', error)
+          //order failed
+        });
+        
         
         // You can access the token ID with `token.id`.
         // Get the token ID to your server-side code for use.
@@ -63,5 +71,5 @@ export class CheckoutComponent implements OnInit {
       amount: this.totalCost
     });
   }
-    
+
 }
