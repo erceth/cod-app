@@ -1,3 +1,3 @@
 export const config = {
-  stripePublicKey: 'stripe_public_key';
+  stripePublicKey: 'stripe_public_key'
 };

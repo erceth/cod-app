@@ -6,9 +6,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CheckoutService {
 
   constructor(private http: HttpClient) { }
-  newOrder(stripeTokenId, orderDetails) {
+  newOrder(stripeToken, orderDetails) {
     return this.http.post('/api/newOrder', {
-      stripeTokenId,
+      stripeToken,
       orderDetails
     })
 
@@ -47,6 +47,7 @@ export class CheckoutService {
   //   };
 
   //   console.log(stripe);
-  // }
+  
 
+  }
 }

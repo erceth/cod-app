@@ -51,7 +51,7 @@ export class CheckoutComponent implements OnInit {
           description: this.description,
           totalCost: this.totalCost
         }
-        this.checkoutService.newOrder(token.id, orderDetails).subscribe((success) => {
+        this.checkoutService.newOrder(token, orderDetails).subscribe((success) => {
           console.log('success sending to server', success)
           //order success
         }, (error) => {
@@ -67,7 +67,7 @@ export class CheckoutComponent implements OnInit {
 
     this.handler.open({
       name: 'Cup Of Dirt Checkout',
-      description: this.description,
+      description: this.cartItems,
       amount: this.totalCost
     });
   }
