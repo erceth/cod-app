@@ -3,7 +3,7 @@
   <div *ngFor="let item of cartItems">
     <span>Name: {{item.product.name}}</span>
     <span>Description: {{item.product.description}}</span>
-    <span>Price: {{item.product.price}}</span>
+    <span>Price: {{item.product.price | currency}}</span>
     <span>Count: {{item.count}}</span>
     <button mat-raised-button (click)="decreaseAmount(item)">
       <span [hidden]="item.count > 1">delete</span>
