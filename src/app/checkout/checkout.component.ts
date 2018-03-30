@@ -13,13 +13,13 @@ declare let StripeCheckout: any;
   selector: 'checkout',
   providers: [CheckoutService],
   template: `
-    <button *ngIf="!checkoutToken" (click)="checkoutPopUp()">Checkout</button>
-    <div *ngIf="checkoutToken">{{checkoutToken}}</div>
+    <button *ngIf="!successStripeResult" (click)="checkoutPopUp()">Checkout</button>
+    <div *ngIf="successStripeResult">Transation successful!  Charge ID: {{successStripeResult.id}}</div>
   `
 })
 export class CheckoutComponent implements OnInit {
   @Input() cartItems: Array<CartItem>;
-  checkoutToken;
+  successStripeResult;
   private handler;
   private description;
   private totalCost: number;
@@ -46,30 +46,25 @@ export class CheckoutComponent implements OnInit {
       billingAddress: true,
       shippingAddress: true,
       token: (token) => {
-        console.log(token);
         let orderDetails = {
           description: this.description,
           totalCost: this.totalCost
         }
-        this.checkoutService.newOrder(token, orderDetails).subscribe((success) => {
+        this.checkoutService.newOrder(token.id, orderDetails).subscribe((success) => {
           console.log('success sending to server', success)
-          //order success
+          this.successStripeResult = success;
         }, (error) => {
-          console.log('could not send to server, error', error)
           //order failed
+          console.log('could not send to server, error', error);
+          // TODO: using different cc numbers, get different errors and display.
         });
-        
-        
-        // You can access the token ID with `token.id`.
-        // Get the token ID to your server-side code for use.
       }
     });
 
     this.handler.open({
       name: 'Cup Of Dirt Checkout',
-      description: this.cartItems,
+      description: this.description,
       amount: this.totalCost
     });
   }
-
 }

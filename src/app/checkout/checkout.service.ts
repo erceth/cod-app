@@ -6,9 +6,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CheckoutService {
 
   constructor(private http: HttpClient) { }
-  newOrder(stripeToken, orderDetails) {
+  newOrder(stripeTokenId, orderDetails) {
     return this.http.post('/api/newOrder', {
-      stripeToken,
+      stripeTokenId,
       orderDetails
     })
 
