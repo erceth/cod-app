@@ -1,0 +1,12 @@
+.home {
+  width: 100%;
+}
+.splash {
+  margin: auto;
+  display: block;
+}
+
+.blobs .blob {
+  
+  background: red;
+}

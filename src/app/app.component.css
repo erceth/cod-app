@@ -1,0 +1,35 @@
+/*Logo*/
+.logo {
+  font-family: cursive;
+}
+
+
+/*Navigation*/
+.nav ul {
+  display: flex;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.nav li {
+  flex-grow: 1;
+}
+
+.nav .nav-item {
+  color: #222;
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  text-decoration: none;
+  background: #eee;
+  line-height: 26px;
+}
+
+.nav .nav-item a:hover {
+  text-decoration: underline;
+}
+
+.nav .nav-item.active {
+  background: #ccc;
+}

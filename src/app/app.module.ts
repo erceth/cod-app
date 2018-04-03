@@ -11,14 +11,8 @@ import { ShopComponent } from './shop/shop.component';
 import { InfoComponent } from './info/info.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartComponent } from './cart/cart.component';
-import { QuestionDialogComponent } from './question-dialog/question-dialog.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-
-import { MatDialogModule } from '@angular/material';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatInputModule} from '@angular/material/input';
-
 
 
 @NgModule({
@@ -30,19 +24,15 @@ import {MatInputModule} from '@angular/material/input';
     InfoComponent,
     CheckoutComponent,
     CartComponent,
-    QuestionDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatStepperModule,
-    MatInputModule
+    ReactiveFormsModule
   ],
-  entryComponents: [QuestionDialogComponent],
+  entryComponents: [],
   providers: [], //service providers
   bootstrap: [AppComponent] //the root component that Angular creates and inserts into the index.html
 })

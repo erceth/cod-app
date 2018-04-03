@@ -1,13 +1,12 @@
 <div>
   <header>
-    <div class="logo">COD</div>
-    <nav>
+    <div class="logo"><h1>Cup Of Dirt</h1></div>
+    <nav class="nav">
       <ul>
-        <li><a routerLink="/home">Home</a></li>
-        <li><a routerLink="/about">About</a></li>
-        <li><a routerLink="/shop">Shop</a></li>
-        <li><a routerLink="/cart">Cart {{countCartItems(cartItems)}}</a></li>
-        
+        <li><a class="nav-item" routerLink="/home" routerLinkActive="active">Home</a></li>
+        <li><a class="nav-item" routerLink="/about" routerLinkActive="active">About</a></li>
+        <li><a class="nav-item" routerLink="/shop" routerLinkActive="active">Shop</a></li>
+        <li><a class="nav-item" routerLink="/cart" routerLinkActive="active">Cart {{countCartItems(cartItems)}}</a></li>
       </ul>
       <div>
 

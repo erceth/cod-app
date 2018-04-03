@@ -1,7 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatInputModule} from '@angular/material/input';
-import {FormGroup, FormControl } from '@angular/forms';
 import { CartItem } from '../data-schemas/cart-items';
 import { config } from '../config';
 import { CheckoutService } from './checkout.service';
