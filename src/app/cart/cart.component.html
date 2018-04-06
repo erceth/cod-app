@@ -1,5 +1,5 @@
 <div class="cart">
-  <h4>Cart:</h4>
+  <h3>Cart:</h3>
   <div *ngFor="let item of cartItems">
     <span>Name: {{item.product.name}}</span>
     <span>Description: {{item.product.description}}</span>
@@ -14,6 +14,9 @@
   </div>
   <div *ngIf="cartItems.length > 0">
     <checkout [cartItems]="cartItems"></checkout>  
+  </div>
+  <div *ngIf="cartItems.length <= 0">
+    <span> Cart is empty.  <a class="shop-now" routerLink="/shop">Shop now!</a></span>
   </div>
   
 </div>

@@ -1,6 +1,5 @@
 .shop {
-  
-  
+  margin: 15px;
 }
 
 .shop .product-wrapper {
@@ -10,8 +9,9 @@
 }
 
 .shop .product {
-  background: red;
+  background: tan;
   position: relative;
+  padding: 15px;
 }
 
 .shop .title {

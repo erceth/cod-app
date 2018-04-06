@@ -1,12 +1,29 @@
 .home {
   width: 100%;
 }
+
 .splash {
+  margin-top: 15px;
+}
+
+.splash img{
   margin: auto;
   display: block;
+  width: 100%;
+}
+
+.blobs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
 }
 
 .blobs .blob {
-  
-  background: red;
+  background: tan;
+  margin-top: 15px;
+  padding: 15px;
 }
+
+.blobs .blob:last-child {
+}
+
