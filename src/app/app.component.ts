@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CartItem } from './data-schemas/cart-items';
 import { CartService } from './cart.service';
 import * as _ from "lodash";
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import * as _ from "lodash";
 export class AppComponent {
   title = 'app';
   cartItems: Array<CartItem>;
+  adminUrl = environment.backendUrl;
 
   constructor(private cartService: CartService) {
 

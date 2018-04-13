@@ -1,3 +1,7 @@
+import { config } from '../app/config';
+
 export const environment = {
-  production: true
+  production: true,
+  backendUrl: config.prod.backendUrl,
+  stripePublicKey: config.prod.stripePublicKey
 };

@@ -13,7 +13,8 @@
 
   </div>
   <div *ngIf="cartItems.length > 0">
-    <checkout [cartItems]="cartItems"></checkout>  
+    <checkout [cartItems]="cartItems"></checkout>
+    <p>* This is a demo site.  Do not put sensitive data into the checkout form. Valid test credit card number is: 4242 4242 4242 4242. </p>
   </div>
   <div *ngIf="cartItems.length <= 0">
     <span> Cart is empty.  <a class="shop-now" routerLink="/shop">Shop now!</a></span>

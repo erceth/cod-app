@@ -1,3 +1,12 @@
+const STRIPE_PUBLIC_KEY = 'stripe-pub-key';
+
 export const config = {
-  stripePublicKey: 'stripe_public_key'
+  dev: {
+    stripePublicKey: STRIPE_PUBLIC_KEY,
+    backendUrl: 'front-end-url'
+  },
+  prod: {
+    stripePublicKey: STRIPE_PUBLIC_KEY,
+    backendUrl: 'front-end-url'
+  }
 };

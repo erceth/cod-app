@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'cart',
-  // providers: [CartService],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })

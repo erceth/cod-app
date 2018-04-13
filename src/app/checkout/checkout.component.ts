@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CartItem } from '../data-schemas/cart-items';
-import { config } from '../config';
+import { environment } from '../../environments/environment';
 import { CheckoutService } from './checkout.service';
 import * as _ from "lodash";
 
@@ -36,7 +36,7 @@ export class CheckoutComponent implements OnInit {
 
   checkoutPopUp() {
     this.handler = StripeCheckout.configure({
-      key: config.stripePublicKey,
+      key: environment.stripePublicKey,
       image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
       locale: 'auto',
       

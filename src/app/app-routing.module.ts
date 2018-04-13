@@ -8,8 +8,7 @@ import { InfoComponent } from './info/info.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  {path: 'home', component: HomeComponent},
+  {path: '', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'shop', component: ShopComponent},
   {path: 'cart', component: CartComponent},
